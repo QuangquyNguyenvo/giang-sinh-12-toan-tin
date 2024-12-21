@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Responsive Button</title>
+    <meta name="description" content="">
+    <style>
+        .container {
+            margin-top: -15%;
+        }
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            position: relative;
+            max-height: fit-content;
+        }
+
+        button.Message-Button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 3em;
+            font-weight: 600;
+            color: #5c5a3d;
+            text-transform: uppercase;
+            padding: 1.25em 2em;
+            background: #f8fce0;
+            border: 2px solid #c2c4a3;
+            border-radius: 0.75em;
+            transform-style: preserve-3d;
+            transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
+                        transform 150ms cubic-bezier(0, 0, 0.58, 1);
+        }
+
+        button.Message-Button::before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e9edc4;
+            border-radius: inherit;
+            transform: translate3d(0, 0.75em, -1em);
+            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+        }
+
+        button.Message-Button:hover {
+            background: #fcffe6;
+            transform: translate(-50%, calc(-50% + 0.25em));
+        }
+
+        button.Message-Button:hover::before {
+            transform: translate3d(0, 0.5em, -1em);
+        }
+
+        button.Message-Button:active {
+            background: #fcffe6;
+            transform: translate(-50%, calc(-50% + 0.75em));
+        }
+
+        button.Message-Button:active::before {
+            transform: translate3d(0, 0, -1em);
+        }
+
+        button.Message-Button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        
+        .hopqua {
+            position: absolute;
+            bottom: 13%;
+            left: 32%;
+            transform: translateX(-50%);
+            transform: scale(0.8);
+        }
+
+        .box {
+            position: relative;
+        }
+
+        .box::before {
+            content: "";
+            width: 280px;
+            height: 280px;
+            background-color: #89cff0;
+            position: absolute;
+            z-index: -1;
+            top: 15%;
+            left: 50.4%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            opacity: 1;
+        }
+
+        .box-body {
+            position: relative;
+            height: 130px;
+            width: 150px;
+            margin-top: 123.3333333333px;
+            background-color: #cc231e;
+            border-bottom-left-radius: 5%;
+            border-bottom-right-radius: 5%;
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(#762c2c,#ff0303);
+        }
+
+        .box-body .img {
+            opacity: 0;
+            transform: translateY(0%);
+            transition: all 1.1s;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .box-body:hover {
+            cursor: pointer;
+            animation: box-body 1.5s forwards ease-in-out;
+        }
+
+        .box-body:hover .img {
+            opacity: 1;
+            z-index: 0;
+            transform: translateY(-550px) translateX(-35%);
+            border-radius: 14px;
+        }
+
+        .box-body:hover .box-lid {
+            animation: box-lid 0.8s forwards ease-in-out;
+        }
+
+        .box-body:hover .box-bowtie::before {
+            animation: box-bowtie-left 0.5s forwards ease-in-out;
+        }
+
+        .box-body:hover .box-bowtie::after {
+            animation: box-bowtie-right 0.5s forwards ease-in-out;
+        }
+
+        .box-body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            background: linear-gradient(#ffffff,#ffefa0);
+        }
+
+        .box-lid {
+            position: absolute;
+            z-index: 1;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 90%;
+            height: 40px;
+            background-color: #cc231e;
+            width: 180px;
+            border-radius: 5%;
+            box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
+        }
+
+        .box-lid::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            background: linear-gradient(#ffefa0,#fff);
+        }
+
+        .box-bowtie {
+            z-index: 1;
+            height: 100%;
+        }
+
+        .box-bowtie::before, .box-bowtie::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            border: 16px solid white;
+            border-radius: 50% 50% 0 50%;
+            position: absolute;
+            bottom: 99%;
+            z-index: -1;
+        }
+
+        .box-bowtie::before {
+            left: 50%;
+            transform: translateX(-100%) skew(10deg, 10deg);
+        }
+
+        .box-bowtie::after {
+            left: 50%;
+            transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+        }
+
+        @keyframes box-lid {
+            0%, 42% {
+                transform: translate3d(-50%, 0%, 0) rotate(0deg);
+            }
+            60% {
+                transform: translate3d(-85%, -230%, 0) rotate(-25deg);
+            }
+            90%, 100% {
+                transform: translate3d(-119%, 225%, 0) rotate(-70deg);
+            }
+        }
+
+        @keyframes box-body {
+            0% {
+                transform: translate3d(0%, 0%, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate3d(0%, 25%, 0) rotate(20deg);
+            }
+            50% {
+                transform: translate3d(0%, -15%, 0) rotate(0deg);
+            }
+            70% {
+                transform: translate3d(0%, 0%, 0) rotate(0deg);
+            }
+        }
+
+        @keyframes box-bowtie-right {
+            0%, 50%, 75% { 
+                transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
+            }
+            90%, 100% {
+                transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+                box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @keyframes box-bowtie-left {
+            0% {
+                transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+            }
+            50%, 75% {
+                transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
+            }
+            90%, 100% {
+                transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            button.Message-Button {
+                font-size: 2em;
+                padding: 1em 1.5em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            button.Message-Button {
+                font-size: 1.5em;
+                padding: 0.8em 1.2em;
+            }
+        }
+        .padogangs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 50px;
+}
+
+.herta {
+    transform: rotateY(180deg);
+    animation: moveHerta 12s linear infinite;
+}
+
+.gura {
+    transform: rotateY(180deg);
+    animation: moveGura 12s linear infinite;
+}
+
+.padoru {
+    transform: rotateY(180deg);
+    animation: movePadoru 12s linear infinite;
+}
+
+.arisu {
+    transform: rotateY(180deg);
+    animation: moveArisu 12s linear infinite;
+}
+
+@keyframes moveHerta {
+    0% { transform: translateX(-500%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+}
+
+@keyframes moveGura {
+    0% { transform: translateX(-550%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+}
+
+@keyframes movePadoru {
+    0% { transform: translateX(-600%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+}
+
+@keyframes moveArisu {
+    0% { transform: translateX(-650%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
+        <button class="Message-Button">TIẾP TỤC</button>
+
+        <div class="hopqua">
+        
+            <div class="row">
+                <div class="col-12">
+                </div>
+                <div class="col-12 mt-5 d-flex justify-content-center">
+                    <div class="box">
+                        <div class="box-body">
+                            <img class="img" src="https://pbs.twimg.com/profile_images/1539701674679291904/ZrBJqhoc_400x400.jpg" width="500" height="500" >
+                            <div class="box-lid">
+                                
+                                <div class="box-bowtie"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="padogangs">
+            <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%" class="arisu">
+            <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%" class="padoru">
+            <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
+            <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta"> 
+        </div>
+        <audio controls autoplay loop style="visibility: hidden; position: absolute;">
+            <source src="{{url_for('static', filename='images/song.mp3') }}" type="audio/mpeg">
+        </audio>
+        <!-- <script>
+            const button = document.querySelector('.Message-Button');
+            button.addEventListener('click', () => {
+                window.location.href = '/home';
+            });
+        </script> -->
+    </div>
+</body>
+</html>
