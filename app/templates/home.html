@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Responsive Button</title>
+    <title>Giáng sinh 12TT</title>
     <meta name="description" content="">
     <style>
         .container {
@@ -20,6 +20,7 @@
             font-family: sans-serif;
             position: relative;
             max-height: fit-content;
+ 
         }
 
         button.Message-Button {
@@ -368,6 +369,13 @@
                 window.location.href = '/home';
             });
         </script> -->
+
+        <script>
+            const button = document.querySelector('.Message-Button');
+            button.addEventListener('click', () => {
+                window.location.href = "{{ url_for('next_page') }}";
+            });
+        </script>
     </div>
 </body>
 </html>
