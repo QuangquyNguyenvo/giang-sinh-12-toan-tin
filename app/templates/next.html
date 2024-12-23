@@ -1,153 +1,366 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giáng Sinh - Lời Chúc</title>
-    <style>
-        body {
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            background-size: cover;
-            min-height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            position: relative;
-            max-height: fit-content;
-        }
-        .container {
-            padding: 20px;
-        }
-        .greetings-container {
-            display: flex;
-            flex-direction: column; /* Sắp xếp theo chiều dọc */
-            gap: 10px;
-            padding: 20px;
-            overflow-y: auto; /* Cuộn dọc khi có nhiều lời chúc */
-            margin-top: 45%; /* Đặt từ dưới lên khoảng 45% chiều cao màn hình */
-            height: 45%; /* Chiếm gần hết chiều cao màn hình */
-            max-height: 60vh; /* Giới hạn chiều cao tối đa để không vượt quá màn hình */
-            background-color: rgba(0, 0, 0, 0.7); /* Khung màu đen */
-            border-radius: 10px; /* Bo tròn các góc */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8); /* Thêm bóng đổ cho khung */
-        }
-        .greeting-box {
-            height: auto;
-            width:auto;
-            min-width: 200px;
-            max-width: 80%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.8);
-            color: black;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            word-wrap: break-word;
-        }
-        .add-button {
-            position: fixed;
-            bottom: 60px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #ff5c5c;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.2s ease-in-out;
-        }
-        .add-button:hover {
-            background-color: #ff7878;
-        }
-        .add-button:active {
-            transform: scale(1.2); /* Phóng to nút khi nhấn */
-            border:none;
-        }  
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Giáng Sinh 12 Toán Tin</title>
+  <style>
+      body {
+           -webkit-tap-highlight-color: transparent;
+           background-size: cover;
+           min-height: 100vh;
+           margin: 0;
+           font-family: sans-serif;
+           position: relative;
+      }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
+      .container {
+           margin-top: 0; height: 100vh;
+           display: flex; align-items: center; justify-content: center;
+           position: relative;
+       }
+
+      .greetings-container {
+           display: flex; flex-direction: column;
+           gap: 15px; padding: 25px; height: 60vh; width: 90%; max-width: 600px;
+           background: #665f4db3;
+           border-radius: 20px;
+           box-shadow: 0 8px 32px #0000004d;
+           border: 1px solid #ffffff33;
+           backdrop-filter: blur(10px);
+      }
+
+      .greetings-container::-webkit-scrollbar {
+           width: 8px;
+       }
+
+       .greetings-container::-webkit-scrollbar-track {
+           background: #ffffff1a;
+           border-radius: 10px;
+       }
+
+       .greetings-container::-webkit-scrollbar-thumb {
+           background: #ffffff4d;
+           border-radius: 10px;
+       }
+
+      .greeting-box {
+           min-width: auto; max-width: 100%;
+           padding: 20px;
+           background: #ffffffe6; color: #333;
+           border-radius: 15px;
+           box-shadow: 0 4px 15px #0000001a;
+           transition: transform 0.2s ease;
+           border-left: 5px solid #ff5c5c;
+      }
+
+      .greeting-box:hover {
+           transform: translateY(-2px);
+       }
+
+       .greeting-box strong {
+           color: #ff5c5c;
+           font-size: 1.1em;
+           display: block;
+           margin-bottom: 8px;
+       }
+
+      .add-button {
+          position: fixed;
+          bottom: 40px;
+          right: 40px;
+          width: 60px;
+          height: 60px;
+          background-color: #ff5c5c;
+          color: white;
+          border: none;
+          border-radius: 50%;
+          font-size: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          box-shadow: 0 4px 8px #0000004d;
+          transition: transform 0.2s ease-in-out;
+          z-index: 1000;
+      }
+
+      .add-button:hover {
+          background-color: #ff7878;
+      }
+
+      .add-button:active {
+          transform: scale(1.2);
+          border:none;
+      }  
+
+      .modal {
+           display: none;
+           position: fixed;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           background: #fffffff2;
+           padding: 25px;
+           border-radius: 15px;
+           color: #333;
+           width: 90%;
+           max-width: 400px;
+           box-shadow: 0 5px 15px #0000004d;
+       }
+
+       .modal-header {
+           text-align: center;
+           margin-bottom: 20px;
+           font-size: 1.5em;
+           color: #ff5c5c;
+           font-weight: bold;
+       }
+
+       .form-group {
+           margin-bottom: 15px;
+       }
+
+       .form-group label {
+           display: block;
+           margin-bottom: 5px;
+           color: #666;
+       }
+
+       .form-group input[type="text"] {
+           width: 100%;
+           padding: 8px;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+           box-sizing: border-box;
+       }
+
+       .checkbox-group {
+           display: flex;
+           align-items: center;
+           gap: 8px;
+           margin: 10px 0;
+       }
+
+       .modal textarea {
+           width: 100%;
+           height: 120px;
+           padding: 12px;
+           border: 1px solid #ddd;
+           border-radius: 5px;
+           font-size: 14px;
+           resize: vertical;
+           margin-bottom: 20px;
+           box-sizing: border-box;
+       }
+
+       .modal-buttons {
+           display: flex;
+           gap: 10px;
+           justify-content: flex-end;
+       }
+
+       .modal button {
+           padding: 10px 20px;
+           border: none;
+           border-radius: 5px;
+           cursor: pointer;
+           font-weight: 500;
+           transition: all 0.3s ease;
+       }
+
+       .modal button#submitMessage {
+           background-color: #ff5c5c;
+           color: white;
+       }
+
+       .modal button#closeModal {
+           background-color: #ddd;
+           color: #666;
+       }
+
+       .modal button:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 2px 5px #00000033;
+       }
+
+      .padogangs {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: 0;
+          display: flex;
+          justify-content: space-around;
+          margin-left: 50px;
+          z-index: 10;
+      }
+
+      .herta {
+          transform: rotateY(180deg);
+          animation: moveHerta 12s linear infinite;
+      }
+
+      .gura {
+          transform: rotateY(180deg);
+          animation: moveGura 12s linear infinite;
+      }
+
+      .padoru {
+          transform: rotateY(180deg);
+          animation: movePadoru 12s linear infinite;
+      }
+
+      .arisu {
+          transform: rotateY(180deg);
+          animation: moveArisu 12s linear infinite;
+      }
+
+      @keyframes moveHerta {
+          0% { transform: translateX(-500%) rotateY(180deg) }
+          100% { transform: translateX(500%) rotateY(180deg) }
+      }
+
+      @keyframes moveGura {
+          0% { transform: translateX(-550%) rotateY(180deg) }
+          100% { transform: translateX(500%) rotateY(180deg) }
+      }
+
+      @keyframes movePadoru {
+          0% { transform: translateX(-600%) rotateY(180deg) }
+          100% { transform: translateX(500%) rotateY(180deg) }
+      }
+
+      @keyframes moveArisu {
+          0% { transform: translateX(-650%) rotateY(180deg) }
+          100% { transform: translateX(500%) rotateY(180deg) }
+      }
+        @media (max-height: 700px) {
+           .greetings-container {height: 50vh;}
         }
-        .modal textarea {
-            width: 100%;
-            height: 100px;
-            margin-bottom: 15px;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            resize: vertical; /* Cho phép người dùng thay đổi chiều cao textarea */
-            white-space: pre-wrap; /* Cho phép xuống dòng tự động */
-            
-}
-        .modal button {
-            padding: 10px 20px;
-            background-color: #5c5a3d;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+        @media (max-width: 768px) {
+           .greetings-container {width: 85%;padding: 20px;}
+           .add-button {bottom: 30px; right: 30px;}
+       }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
-        <div class="greetings-container" id="greetings">
-            <!-- Các khung lời chúc sẽ hiển thị ở đây -->
-        </div>
-        <button class="add-button" id="addButton">+</button>
-    </div>
-    <div class="modal" id="modal">
-        <textarea id="messageInput" placeholder="Nhập lời chúc của bạn tại đây..."></textarea>
-        <button id="submitMessage">Gửi</button>
-        <button id="closeModal">Đóng</button>
-    </div>
-    <script>
-        // Modal handling
-        const modal = document.getElementById('modal');
-        const addButton = document.getElementById('addButton');
-        const closeModal = document.getElementById('closeModal');
-        const submitMessage = document.getElementById('submitMessage');
-        const greetingsContainer = document.getElementById('greetings');
-        const messageInput = document.getElementById('messageInput');
+  <div class="container">
+      <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
+      <div class="greetings-container" id="greetings">
+      </div>
+      <button class="add-button" id="addButton">+</button>
 
-        addButton.addEventListener('click', () => {
-            modal.style.display = 'block';
-        });
+   <div class="modal" id="modal">
+       <div class="modal-header">Gửi lời chúc</div>
+       <div class="form-group">
+           <label for="nameInput">Tên của bạn</label>
+           <input type="text" id="nameInput">
+       </div>
+       <div class="checkbox-group">
+           <input type="checkbox" id="privateCheck">
+           <label for="privateCheck">Gửi ẩn danh</label>
+       </div>
+       <div class="form-group">
+           <label for="messageInput">Lời nhắn</label>
+           <textarea id="messageInput" placeholder="Nhập lời chúc của bạn tại đây..."></textarea>
+       </div>
+       <div class="modal-buttons">
+           <button id="closeModal">Đóng</button>
+           <button id="submitMessage">Gửi</button>
+       </div>
+   </div>
 
-        closeModal.addEventListener('click', () => {
-            modal.style.display = 'none';
-            messageInput.value = '';
-        });
+  <div class="padogangs">
+      <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%" class="arisu">
+      <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%" class="padoru">
+      <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
+      <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta">
+  </div>
+
+  <audio controls autoplay loop style="visibility: hidden; position: absolute;">
+      <source src="{{url_for('static', filename='images/song.mp3') }}" type="audio/mpeg">
+  </audio>
+</div>
+  <script>
+      const modal = document.getElementById('modal');
+      const addButton = document.getElementById('addButton');
+      const closeModal = document.getElementById('closeModal');
+      const submitMessage = document.getElementById('submitMessage');
+      const greetingsContainer = document.getElementById('greetings');
+      const messageInput = document.getElementById('messageInput');
+      const nameInput = document.getElementById('nameInput');
+      const privateCheck = document.getElementById('privateCheck');
+
+      privateCheck.addEventListener('change', () => {
+          nameInput.disabled = privateCheck.checked;
+          if(privateCheck.checked) {
+              nameInput.value = '';
+          }
+      });
+
+      addButton.addEventListener('click', () => {
+          modal.style.display = 'block';
+          nameInput.disabled = privateCheck.checked;
+      });
+
+      closeModal.addEventListener('click', () => {
+          modal.style.display = 'none';
+          messageInput.value = '';
+          nameInput.value = '';
+          privateCheck.checked = false;
+          nameInput.disabled = false;
+      });
+
+      const loadMessages = () => {
+            fetch('/get_messages')
+                .then(response => response.json())
+                .then(messages => {
+                    messages.forEach(({ name, message }) => {
+                        const newGreeting = document.createElement('div');
+                        newGreeting.className = 'greeting-box';
+                        newGreeting.innerHTML = `<strong>${name}:</strong><br>${message}`;
+                        greetingsContainer.appendChild(newGreeting);
+                    });
+                });
+        };
 
         submitMessage.addEventListener('click', () => {
             const message = messageInput.value.trim();
-            if (message) {
-                const newGreeting = document.createElement('div');
-                newGreeting.className = 'greeting-box';
-                newGreeting.textContent = message;
-                greetingsContainer.appendChild(newGreeting);
-                modal.style.display = 'none';
-                messageInput.value = '';
-                // Tự động cuộn xuống dưới sau khi thêm lời chúc mới
-                greetingsContainer.scrollTop = greetingsContainer.scrollHeight;
-            } else {
+            const name = privateCheck.checked ? 'Ẩn danh' : nameInput.value.trim();
+
+            if (!message) {
                 alert('Lời chúc không được để trống!');
+                return;
             }
+
+            fetch('/add_message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const newGreeting = document.createElement('div');
+                    newGreeting.className = 'greeting-box';
+                    newGreeting.innerHTML = `<strong>${name}:</strong><br>${message}`;
+                    greetingsContainer.appendChild(newGreeting);
+                    greetingsContainer.scrollTop = greetingsContainer.scrollHeight;
+                } else {
+                    alert('Có lỗi xảy ra: ' + data.message);
+                }
+            });
+
+            modal.style.display = 'none';
+            messageInput.value = '';
+            nameInput.value = '';
+            privateCheck.checked = false;
+            nameInput.disabled = false;
         });
-    </script>
+
+        document.addEventListener('DOMContentLoaded', loadMessages);
+  </script>
 </body>
 </html>
