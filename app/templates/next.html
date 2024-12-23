@@ -16,19 +16,27 @@
       }
 
       .container {
-           margin-top: 0; height: 100vh;
+           margin-top: -15%; height: 100vh;
            display: flex; align-items: center; justify-content: center;
            position: relative;
        }
 
       .greetings-container {
-           display: flex; flex-direction: column;
-           gap: 15px; padding: 25px; height: 60vh; width: 90%; max-width: 600px;
-           background: #665f4db3;
-           border-radius: 20px;
-           box-shadow: 0 8px 32px #0000004d;
-           border: 1px solid #ffffff33;
-           backdrop-filter: blur(10px);
+        display: flex; 
+        flex-direction: column;
+        gap: 15px; padding: 25px; height: 60vh; width: 90%; max-width: 600px;
+        background: #665f4db3;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px #0000004d;
+        border: 1px solid #ffffff33;
+        backdrop-filter: blur(10px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-top: 30%;
+        max-height: 60vh;
+        background-color: rgba(0, 0, 0, 0.7); 
+          
+           
       }
 
       .greetings-container::-webkit-scrollbar {
@@ -53,6 +61,17 @@
            box-shadow: 0 4px 15px #0000001a;
            transition: transform 0.2s ease;
            border-left: 5px solid #ff5c5c;
+
+           height: auto;
+            width:auto;
+        
+         
+   
+    
+     
+       
+          
+            word-wrap: break-word;
       }
 
       .greeting-box:hover {
