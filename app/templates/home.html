@@ -6,286 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Giáng sinh 12TTin</title>
     <meta name="description" content="">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/giftbox.css') }}">
     <style>
-        .container {
-            margin-top: -15%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        body {
-            -webkit-tap-highlight-color: transparent;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            background-size: cover;
-            min-height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            position: relative;
-            max-height: fit-content;
- 
-        }
+    .container {
+   margin-top: -15%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+    }
+    body {
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    position: relative;
+    max-height: fit-content;
+    }
 
-        button.Message-Button {
-            position: absolute;
-            top: 52%;
-            left: 49%;
-            transform: translate(-50%, -50%);
-            cursor: pointer;
-            outline: none;
-            border: 0;
-            text-decoration: none;
-            font-family: inherit;
-            font-size: 3em;
-            font-weight: 600;
-            color: #5c5a3d;
-            text-transform: uppercase;
-            padding: 1.25em 2em;
-            background: #f8fce0;
-            border: 2px solid #c2c4a3;
-            border-radius: 0.75em;
-            transform-style: preserve-3d;
-            transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
-                        transform 150ms cubic-bezier(0, 0, 0.58, 1);
-        }
+    button.Message-Button {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 3em;
+    font-weight: 600;
+    color: #5c5a3d;
+    text-transform: uppercase;
+    padding: 1.25em 2em;
+    background: #f8fce0;
+    border: 2px solid #c2c4a3;
+    border-radius: 0.75em;
+    transform-style: preserve-3d;
+    transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
+                transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
 
-        button.Message-Button::before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #e9edc4;
-            border-radius: inherit;
-            transform: translate3d(0, 0.75em, -1em);
-            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
-        }
+    button.Message-Button::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e9edc4;
+    border-radius: inherit;
+    transform: translate3d(0, 0.75em, -1em);
+    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+    }
 
-        button.Message-Button:hover {
-            background: #fcffe6;
-            transform: translate(-50%, calc(-50% + 0.25em));
-        }
+    button.Message-Button:hover {
+    background: #fcffe6;
+    transform: translate(-50%, calc(-50% + 0.25em));
+    }
 
-        button.Message-Button:hover::before {
-            transform: translate3d(0, 0.5em, -1em);
-        }
+    button.Message-Button:hover::before {
+    transform: translate3d(0, 0.5em, -1em);
+    }
 
-        button.Message-Button:active {
-            background: #fcffe6;
-            transform: translate(-50%, calc(-50% + 0.75em));
-        }
+    button.Message-Button:active {
+    background: #fcffe6;
+    transform: translate(-50%, calc(-50% + 0.75em));
+    }
 
-        button.Message-Button:active::before {
-            transform: translate3d(0, 0, -1em);
-        }
+    button.Message-Button:active::before {
+    transform: translate3d(0, 0, -1em);
+    }
 
-        button.Message-Button:focus {
-            outline: none;
-            box-shadow: none;
-        }
+    button.Message-Button:focus {
+    outline: none;
+    box-shadow: none;
+    }
 
-        
-        .hopqua {
-            position: absolute;
-            bottom: 13%;
-            left: 30%;
-            transform: translateX(-50%);
-            transform: scale(0.65);
-        }
 
-        .box {
-            position: relative;
-        }
+    @media screen and (max-width: 768px) {
+    button.Message-Button {
+        font-size: 2em;
+        padding: 1em 1.5em;
+    }
+    
+    .hopqua {
+        max-width: 50vw;
+        max-height: 50vh;
+    }
+    }
 
-        .box::before {
-            content: "";
-            width: 280px;
-            height: 280px;
-            background: rgba(250, 248, 228, 0.62);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(1.4px);
-            -webkit-backdrop-filter: blur(1.4px);
-            position: absolute;
-            z-index: -1;
-            top: 15%;
-            left: 50.4%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            opacity: 1;
-        }
+    @media screen and (max-width: 480px) {
+    button.Message-Button {
+        font-size: 1.5em;
+        padding: 0.8em 1.2em;
+    }
+    
+    .hopqua {
+        max-width: 60vw;
+        max-height: 60vh;
+    }
+    }
 
-        .box-body {
-            position: relative;
-            height: 130px;
-            width: 150px;
-            margin-top: 123.3333333333px;
-            background-color: #cc231e;
-            border-bottom-left-radius: 5%;
-            border-bottom-right-radius: 5%;
-            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(#762c2c,#ff0303);
-        }
-
-        .box-body .img {
-            opacity: 0;
-            transform: translateY(0%);
-            transition: all 1.1s;
-            margin: 0 auto;
-            display: block;
-        }
-
-        .box-body:hover {
-            cursor: pointer;
-            animation: box-body 1.5s forwards ease-in-out;
-        }
-
-        .box-body:hover .img {
-            opacity: 1;
-            z-index: 0;
-            transform: translateY(-550px) translateX(-35%);
-            border-radius: 14px;
-        }
-
-        .box-body:hover .box-lid {
-            animation: box-lid 0.8s forwards ease-in-out;
-        }
-
-        .box-body:hover .box-bowtie::before {
-            animation: box-bowtie-left 0.5s forwards ease-in-out;
-        }
-
-        .box-body:hover .box-bowtie::after {
-            animation: box-bowtie-right 0.5s forwards ease-in-out;
-        }
-
-        .box-body::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            background: linear-gradient(#ffffff,#ffefa0);
-        }
-
-        .box-lid {
-            position: absolute;
-            z-index: 1;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 90%;
-            height: 40px;
-            background-color: #cc231e;
-            width: 180px;
-            border-radius: 5%;
-            box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
-        }
-
-        .box-lid::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            background: linear-gradient(#ffefa0,#fff);
-        }
-
-        .box-bowtie {
-            z-index: 1;
-            height: 100%;
-        }
-
-        .box-bowtie::before, .box-bowtie::after {
-            content: "";
-            width: 40px;
-            height: 40px;
-            border: 16px solid white;
-            border-radius: 50% 50% 0 50%;
-            position: absolute;
-            bottom: 99%;
-            z-index: -1;
-        }
-
-        .box-bowtie::before {
-            left: 50%;
-            transform: translateX(-100%) skew(10deg, 10deg);
-        }
-
-        .box-bowtie::after {
-            left: 50%;
-            transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
-        }
-
-        @keyframes box-lid {
-            0%, 42% {
-                transform: translate3d(-50%, 0%, 0) rotate(0deg);
-            }
-            60% {
-                transform: translate3d(-85%, -230%, 0) rotate(-25deg);
-            }
-            90%, 100% {
-                transform: translate3d(-119%, 225%, 0) rotate(-70deg);
-            }
-        }
-
-        @keyframes box-body {
-            0% {
-                transform: translate3d(0%, 0%, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate3d(0%, 25%, 0) rotate(20deg);
-            }
-            50% {
-                transform: translate3d(0%, -15%, 0) rotate(0deg);
-            }
-            70% {
-                transform: translate3d(0%, 0%, 0) rotate(0deg);
-            }
-        }
-
-        @keyframes box-bowtie-right {
-            0%, 50%, 75% { 
-                transform: translateX(0%) rotate(90deg) skew(10deg, 10deg);
-            }
-            90%, 100% {
-                transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
-                box-shadow: 0px 4px 8px -4px rgba(0, 0, 0, 0.3);
-            }
-        }
-
-        @keyframes box-bowtie-left {
-            0% {
-                transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
-            }
-            50%, 75% {
-                transform: translate(-50%, -15%) rotate(45deg) skew(10deg, 10deg);
-            }
-            90%, 100% {
-                transform: translateX(-100%) rotate(0deg) skew(10deg, 10deg);
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            button.Message-Button {
-                font-size: 2em;
-                padding: 1em 1.5em;
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            button.Message-Button {
-                font-size: 1.5em;
-                padding: 0.8em 1.2em;
-            }
-        }
-        .padogangs {
+    .padogangs {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -294,193 +121,180 @@
     display: flex;
     justify-content: space-around;
     margin-left: 50px;
-}
+    }
 
-.herta {
+    .herta {
     transform: rotateY(180deg);
     animation: moveHerta 12s linear infinite;
-}
+    }
 
-.gura {
+    .gura {
     transform: rotateY(180deg);
     animation: moveGura 12s linear infinite;
-}
+    }
 
-.padoru {
+    .padoru {
     transform: rotateY(180deg);
     animation: movePadoru 12s linear infinite;
-}
+    }
 
-.arisu {
+    .arisu {
     transform: rotateY(180deg);
     animation: moveArisu 12s linear infinite;
-}
+    }
 
-@keyframes moveHerta {
+    @keyframes moveHerta {
     0% { transform: translateX(-500%) rotateY(180deg) }
     100% { transform: translateX(500%) rotateY(180deg) }
-}
+    }
 
-@keyframes moveGura {
+    @keyframes moveGura {
     0% { transform: translateX(-550%) rotateY(180deg) }
     100% { transform: translateX(500%) rotateY(180deg) }
-}
+    }
 
-@keyframes movePadoru {
+    @keyframes movePadoru {
     0% { transform: translateX(-600%) rotateY(180deg) }
     100% { transform: translateX(500%) rotateY(180deg) }
-}
+    }
 
-@keyframes moveArisu {
+    @keyframes moveArisu {
     0% { transform: translateX(-650%) rotateY(180deg) }
     100% { transform: translateX(500%) rotateY(180deg) }
-}
+    }
 
-@keyframes blink{
-  0%{
-    border-right-color:transparent;
-  }
-  50%{
-    border-right-color:transparent;
-  }
-  51%{
-    border-right-color:#fff;
-  }
-  100%{
-    border-right-color:#fff;
-  }
-}
+    @keyframes blink{
+    0%{
+        border-right-color:transparent;
+    }
+    50%{
+        border-right-color:transparent;
+    }
+    51%{
+        border-right-color:#fff;
+    }
+    100%{
+        border-right-color:#fff;
+    }
+    }
 
-/* music */
-.player-wrapper {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80%;
-            max-width: 430px;
-            margin-top:-112%;
-            margin-left:9%;
-        
-        }
+    .player-wrapper {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        max-width: 430px;
+        top: 40%; 
+        left: 50%;
+        transform: translateX(-50%); 
+    }
 
-        .dia {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 0;
-            width: 135px;
-            height: 135px;
-            border-radius: 360px;
-            border: 6px silver solid;
-            mask-image: radial-gradient(circle at center, transparent 20%, rgb(154, 37, 37) 30%);
-            object-fit: cover;
-            animation: spin 5s linear infinite;
-        }
+    .dia {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    width: 135px;
+    height: 135px;
+    border-radius: 360px;
+    border: 6px silver solid;
+    mask-image: radial-gradient(circle at center, transparent 20%, rgb(154, 37, 37) 30%);
+    object-fit: cover;
+    animation: spin 5s linear infinite;
+    }
 
-        @keyframes spin {
-            0% {
-                transform: translateX(-50%) translateY(-70%) rotate(0deg);
-            }
+    @keyframes spin {
+    0% {
+        transform: translateX(-50%) translateY(-70%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-70%) rotate(360deg);
+    }
+    }
 
-            100% {
-                transform: translateX(-50%) translateY(-70%) rotate(360deg);
-            }
-        }
+    .music-player {
+    padding: 10px 0px 0px 0px;
+    position: relative;
+    width: 90%;
+    max-width: 340px;
+    height: auto;
+    background: rgb(255, 253, 235);
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+    }
 
-        .music-player {
-            padding: 10px 0px 0px 0px;
-            position: relative;
-            width: 90%;
-            max-width: 340px;
-            height: auto;
-            background: rgb(255, 253, 235);
-            border-radius: 16px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            z-index: 1;
-        }
+    .player-content {
+    padding: 12px 12px 2px 12px;
+    }
 
-        .player-content {
-            padding: 12px 12px 2px 12px;
-        }
+    .song-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    margin-top: -12%;
+    }
 
-        .song-info {
-            display: flex;
-            align-items: center;
-            margin-bottom: 18px;
-            margin-top: -12%;
-        }
+    .song-title {
+    font-size: 18px;
+    color: #71717a;
+    font-weight: bold;
+    margin: auto;
+    margin-top: 6%;
+    margin-bottom: 5%;
+    }
 
-        .song-title {
-            font-size: 18px;
-            color: #71717a;
-            font-weight: bold;
-            margin:auto;
-            margin-top:6%;
-            margin-bottom: 5%;
-            
-        }
+    .time-slider {
+    margin-top: -12%;
+    }
 
-        /* .artist {
-            color: #71717a;
-            margin:auto;
-            margin: 4px 6px 0;
-            margin-top:5%;
-            margin-bottom: 5%;
-        } */
+    .slider {
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 2px;
+    outline: none;
+    }
 
-        .time-slider {
-            margin-top: -12%;
-        }
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: white;
+    border: 2px solid #a1a1aa;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-        .slider {
-            appearance: none;
-            width: 100%;
-            height: 4px;
-            background: #e5e7eb;
-            border-radius: 2px;
-            outline: none;
-        }
+    .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0%;
+    }
 
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            background: white;
-            border: 2px solid #a1a1aa;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+    .control-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    }
 
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin-top: 0%;
-        }
+    .control-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: #333;
+    }
 
-        .control-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .control-btn svg {
-            width: 18px;
-            height: 18px;
-            stroke: #333;
-        }
-
-        #pauseIcon {
-            display: none;
-        }
-
-        
+    #pauseIcon {
+    display: none;
+    }
     </style>
 </head>
 <body>
@@ -493,10 +307,7 @@
         <canvas id="snow"></canvas>
         
         <div class="hopqua">
-        
             <div class="row">
-                <div class="col-12">
-                </div>
                 <div class="col-12 mt-5 d-flex justify-content-center">
                     <div class="box">
                         <div class="box-body">
@@ -517,18 +328,55 @@
             <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
             <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta"> 
         </div>
-        <!-- <audio controls autoplay loop style="visibility: hidden; position: absolute;">
-            <source src="{{url_for('static', filename='images/song.mp3') }}" type="audio/mpeg">
-        </audio> -->
-        
-        <!-- <script>
-            const button = document.querySelector('.Message-Button');
-            button.addEventListener('click', () => {
-                window.location.href = '/home';
-            });
-        </script> -->
+        <!-- music -->
+        <div class="player-wrapper">
+            <img class="dia" src="https://img.pikbest.com/wp/202345/illustration-christmas-music_9592952.jpg!w700wp">
+            <div class="music-player">
+                <div class="player-content">
+                    <div class="song-info">
+                        <p class="song-title">Padoru</p>
+                    </div>
+                    <div class="time-slider">
+                        <input type="range" class="slider" min="0" max="100" value="0">
+                    </div>
+                    <div class="controls">
+                        <button class="control-btn mode-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="17 1 21 5 17 9"></polyline>
+                                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                                <polyline points="7 23 3 19 7 15"></polyline>
+                                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="playPauseBtn">
+                            
+                            <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="6" y="4" width="4" height="16"></rect>
+                                <rect x="14" y="4" width="4" height="16"></rect>
+                                
+                            </svg>
+                            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </button>
+                        <button class="control-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                                <line x1="19" y1="5" x2="19" y2="19"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <audio id="audioPlayer" src="{{url_for('static', filename='music/song.mp3') }}" autoplay></audio>
 
         <script>
+            //tuyết 
             const button = document.querySelector('.Message-Button');
             button.addEventListener('click', () => {
                 window.location.href = "{{ url_for('next_page') }}";
@@ -596,55 +444,7 @@
                 }  
                 };
                 var confetti = Snow.init();
-        </script>
-
-        <!-- music -->
-        <div class="player-wrapper">
-            <img class="dia" src="https://img.pikbest.com/wp/202345/illustration-christmas-music_9592952.jpg!w700wp">
-            <div class="music-player">
-                <div class="player-content">
-                    <div class="song-info">
-                        <p class="song-title">Padoru</p>
-                    </div>
-                    <div class="time-slider">
-                        <input type="range" class="slider" min="0" max="100" value="0">
-                    </div>
-                    <div class="controls">
-                        <button class="control-btn mode-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="17 1 21 5 17 9"></polyline>
-                                <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
-                                <polyline points="7 23 3 19 7 15"></polyline>
-                                <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
-                            </svg>
-                        </button>
-                        <button class="control-btn" id="playPauseBtn">
-                            
-                            <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="6" y="4" width="4" height="16"></rect>
-                                <rect x="14" y="4" width="4" height="16"></rect>
-                            </svg>
-                            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
-                        </button>
-                        <button class="control-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                                <line x1="19" y1="5" x2="19" y2="19"></line>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <audio id="audioPlayer" src="{{url_for('static', filename='images/padoru.mp3') }}" autoplay></audio>
-
-        <script>
+            // nhạc
             document.addEventListener('DOMContentLoaded', () => {
                 const audioPlayer = document.getElementById('audioPlayer');
                 const playPauseBtn = document.getElementById('playPauseBtn');
