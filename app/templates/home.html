@@ -4,11 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Giáng sinh 12TT</title>
+    <title>Giáng sinh 12TTin</title>
     <meta name="description" content="">
     <style>
         .container {
             margin-top: -15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         body {
             -webkit-tap-highlight-color: transparent;
@@ -25,7 +28,7 @@
 
         button.Message-Button {
             position: absolute;
-            top: 56%;
+            top: 52%;
             left: 49%;
             transform: translate(-50%, -50%);
             cursor: pointer;
@@ -88,9 +91,9 @@
         .hopqua {
             position: absolute;
             bottom: 13%;
-            left: 32%;
+            left: 30%;
             transform: translateX(-50%);
-            transform: scale(0.8);
+            transform: scale(0.65);
         }
 
         .box {
@@ -101,7 +104,11 @@
             content: "";
             width: 280px;
             height: 280px;
-            background-color: #89cff0; 
+            background: rgba(250, 248, 228, 0.62);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(1.4px);
+            -webkit-backdrop-filter: blur(1.4px);
             position: absolute;
             z-index: -1;
             top: 15%;
@@ -352,7 +359,7 @@
             align-items: center;
             width: 80%;
             max-width: 430px;
-            margin-top:-130%;
+            margin-top:-112%;
             margin-left:9%;
         
         }
@@ -407,15 +414,22 @@
         }
 
         .song-title {
-            font-size: 15px;
+            font-size: 18px;
+            color: #71717a;
             font-weight: bold;
-            margin-left: 15%;
+            margin:auto;
+            margin-top:6%;
+            margin-bottom: 5%;
+            
         }
 
-        .artist {
+        /* .artist {
             color: #71717a;
+            margin:auto;
             margin: 4px 6px 0;
-        }
+            margin-top:5%;
+            margin-bottom: 5%;
+        } */
 
         .time-slider {
             margin-top: -12%;
@@ -465,6 +479,8 @@
         #pauseIcon {
             display: none;
         }
+
+        
     </style>
 </head>
 <body>
@@ -475,6 +491,7 @@
         <div class="user-controller">
         <button class="Message-Button">TIẾP TỤC</button>
         <canvas id="snow"></canvas>
+        
         <div class="hopqua">
         
             <div class="row">
@@ -587,8 +604,7 @@
             <div class="music-player">
                 <div class="player-content">
                     <div class="song-info">
-                        <p class="song-title">Christmas Song</p>
-                        <p class="artist">Holiday Artist</p>
+                        <p class="song-title">Padoru</p>
                     </div>
                     <div class="time-slider">
                         <input type="range" class="slider" min="0" max="100" value="0">
@@ -604,14 +620,15 @@
                             </svg>
                         </button>
                         <button class="control-btn" id="playPauseBtn">
-                            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                            </svg>
+                            
                             <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="6" y="4" width="4" height="16"></rect>
                                 <rect x="14" y="4" width="4" height="16"></rect>
+                            </svg>
+                            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </button>
                         <button class="control-btn">
@@ -625,14 +642,20 @@
                 </div>
             </div>
         </div>
-        <audio id="audioPlayer" src="{{url_for('static', filename='images/song.mp3') }}" autoplay></audio>
+        <audio id="audioPlayer" src="{{url_for('static', filename='images/padoru.mp3') }}" autoplay></audio>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const audioPlayer = document.getElementById('audioPlayer');
                 const playPauseBtn = document.getElementById('playPauseBtn');
-                const playIcon = document.getElementById('playIcon');
                 const pauseIcon = document.getElementById('pauseIcon');
+                const playIcon = document.getElementById('playIcon');
+
+                
                 audioPlayer.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'inline-block';
+
                 playPauseBtn.addEventListener('click', () => {
                     if (audioPlayer.paused) {
                         audioPlayer.play();
