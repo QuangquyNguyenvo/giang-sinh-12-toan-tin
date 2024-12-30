@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Message</title>
+        <style>
+            *{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-sizing: border-box;}
+            .scrolling-wrapper{
+                overflow-x:auto;
+                overflow-y:hidden;
+                white-space:nowrap;
+                -webkit-overflow-scrolling:touch;
+            }
+            .scrolling-wrapper::-webkit-scrollbar{display:none;}
+            .card{
+                display:inline-block;
+                margin-right:1.5vh;
+                background-color:#f0f0f0;
+                border:1px solid #ddd;
+                border-radius: 20px;
+                width:40vw;
+                height: 50vh;
+                box-shadow:0 0.3vh 0.6vh rgba(0,0,0,0.1);
+                vertical-align:top;
+                padding:0;
+            }
+            .message{
+                width: calc(100% - 2 * 5%);
+                height: calc(100% - 2 * 5%);
+                border: 0.3vh dashed red;
+                border-radius: 14px;
+                margin: 5%;
+                display: flex;
+                flex-direction: column;
+                 padding: 0;
+            }
+            .message h3{
+                margin:1.5vh;
+                color:#333;
+                font-size:1.2rem;
+            }
+            .message textarea{
+                width:90%;
+                border:1px solid #ccc;
+                border-radius:0.6vh;
+                padding:1vh;
+                font-size:1vw;
+                resize:vertical;
+                flex: 1;
+                margin:0 1.5vh 1.5vh 1.5vh;
+                box-sizing: border-box;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="scrolling-wrapper">
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div class="card">
+                <div class="message">
+                    <h3>From: cc</h3>
+                    <textarea></textarea>
+                </div>
+            </div>
+          </div>
+    </body>
+</html>
