@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Giáng Sinh 12 Toán Tin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/padogangs.css') }}">
   <style>
       body {
            -webkit-tap-highlight-color: transparent;
@@ -228,59 +229,6 @@
            transform: translateY(-2px);
            box-shadow: 0 2px 5px #00000033;
        }
-
-      .padogangs {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: 0;
-          display: flex;
-          justify-content: space-around;
-          margin-left: 50px;
-          z-index: 10;
-          pointer-events: none;
-      }
-
-      .herta {
-          transform: rotateY(180deg);
-          animation: moveHerta 12s linear infinite;
-      }
-
-      .gura {
-          transform: rotateY(180deg);
-          animation: moveGura 12s linear infinite;
-      }
-
-      .padoru {
-          transform: rotateY(180deg);
-          animation: movePadoru 12s linear infinite;
-      }
-
-      .arisu {
-          transform: rotateY(180deg);
-          animation: moveArisu 12s linear infinite;
-      }
-
-      @keyframes moveHerta {
-          0% { transform: translateX(-500%) rotateY(180deg) }
-          100% { transform: translateX(500%) rotateY(180deg) }
-      }
-
-      @keyframes moveGura {
-          0% { transform: translateX(-550%) rotateY(180deg) }
-          100% { transform: translateX(500%) rotateY(180deg) }
-      }
-
-      @keyframes movePadoru {
-          0% { transform: translateX(-600%) rotateY(180deg) }
-          100% { transform: translateX(500%) rotateY(180deg) }
-      }
-
-      @keyframes moveArisu {
-          0% { transform: translateX(-650%) rotateY(180deg) }
-          100% { transform: translateX(500%) rotateY(180deg) }
-      }
         @media (max-height: 700px) {
            .greetings-container {height: 50vh;}
         }
