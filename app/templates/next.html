@@ -1,112 +1,183 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Giáng Sinh 12 Toán Tin</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/padogangs.css') }}">
-  <style>
-      body {
-           -webkit-tap-highlight-color: transparent;
-           background-size: cover;
-           min-height: 100vh;
-           margin: 0;
-           font-family: sans-serif;
-           position: relative;
-      }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Giáng Sinh 12 Toán Tin</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/padogangs.css') }}">
+    <style>
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-      .container {
-           margin-top: -15%; height: 100vh;
-           display: flex; align-items: center; justify-content: center;
-           position: relative;
-       }
+        .container {
+            margin-top: -15%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
-      .greetings-container {
-        display: flex; 
-        flex-direction: column;
-        gap: 15px; padding: 25px; height: 60vh; width: 90%; max-width: 600px;
-        background: #a3a099b3;
-        border-radius: 20px;
-        box-shadow: 0 8px 32px #0000004d;
-        border: 1px solid #ffffff33;
-        backdrop-filter: blur(10px);
-        overflow-y: auto;
-        overflow-x: hidden;
-        margin-top: 30%;
-        max-height: 60vh;
-        background-color: rgba(255, 253, 235, 0.7); 
-        
-      }
+        .cards-container {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            height: 60vh;
+            width: 90%;
+            max-width: 900px;
+            background: #a3a099b3;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px #0000004d;
+            border: 1px solid #ffffff33;
+            backdrop-filter: blur(10px);
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin-top: 30%;
+            max-height: 60vh;
+            background-color: rgba(255, 253, 235, 0.7);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
 
-      .greetings-container::-webkit-scrollbar {
-           width: 8px;
-       }
+        .cards-container::-webkit-scrollbar {
+            height: 8px;
+        }
 
-       .greetings-container::-webkit-scrollbar-track {
-           background: #ffffff1a;
-           border-radius: 10px;
-       }
+        .cards-container::-webkit-scrollbar-track {
+            background: #ffffff1a;
+            border-radius: 10px;
+        }
 
-       .greetings-container::-webkit-scrollbar-thumb {
-           background: #ff3e3e4d;
-           border-radius: 20px;
-       }
+        .cards-container::-webkit-scrollbar-thumb {
+            background: #ff3e3e4d;
+            border-radius: 20px;
+        }
 
-      .greeting-box {
-           min-width: auto; max-width: 100%;
-           padding: 20px;
-           background: #ffffffe6; color: #333;
-           border-radius: 15px;
-           box-shadow: 0 4px 15px #a7a5a51a;
-           transition: transform 0.2s ease;
-           border-left: 5px solid #ff5c5c;
-           height: auto;
-            width:auto;
+        .card {
+            position: relative;
+            width: 300px;
+            height: 90%;
+            background-color: #fde6d6;
+            border-radius: 20px;
+            border: 5px dashed #FFA000;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+        }
+
+        .top-circle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            background-color: #FFB300;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .top-circle img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .from-text {
+            font-weight: bold;
+            color: #FF6F00;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .name-text {
+            font-weight: bold;
+            color: #E65100;
+            font-size: 24px;
+            margin-bottom: 15px;
             word-wrap: break-word;
-      }
+        }
 
-      .greeting-box:hover {
-           transform: translateY(-2px);
-       }
+        .message-text {
+            color: #6D4C41;
+            font-size: 16px;
+            word-wrap: break-word;
+            overflow-y: auto;
+            max-height: 70%;
+        }
 
-       .greeting-box strong {
-           color: #ff5c5c;
-           font-size: 1.1em;
-           display: block;
-           margin-bottom: 8px;
-       }
+        .like-section {
+            margin-top: auto;
+            text-align: right;
+            width: 100%;
+        }
 
-      .add-button {
-          position: fixed;
-          bottom: 90px;
-          right: 40px;
-          width: 60px;
-          height: 60px;
-          background-color: #ff5c5c;
-          color: white;
-          border: none;
-          border-radius: 50%;
-          font-size: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          box-shadow: 0 4px 8px #0000004d;
-          transition: transform 0.2s ease-in-out;
-          z-index: 1000;
-      }
+        .like-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
 
-      .add-button:hover {
-          background-color: #ff7878;
-      }
+        .like-button:hover {
+            transform: scale(1.1);
+        }
 
-      .add-button:active {
-          transform: scale(1.2);
-          border:none;
-      }  
+        .like-count {
+            margin-left: 0px;
+        }
 
-      .modal {
+        .add-button {
+            position: fixed;
+            bottom: 90px;
+            right: 40px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff5c5c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px #0000004d;
+            transition: transform 0.2s ease-in-out;
+            z-index: 1000;
+        }
+
+        .add-button:hover {
+            background-color: #ff7878;
+        }
+
+        .add-button:active {
+            transform: scale(1.2);
+            border: none;
+        }
+
+        .modal {
             display: none;
             position: fixed;
             top: 50%;
@@ -119,61 +190,39 @@
             width: 90%;
             max-width: 400px;
             box-shadow: 0 5px 15px #0000004d;
-            z-index: 9999;
         }
 
-       .modal-header {
-           text-align: center;
-           margin-bottom: 20px;
-           font-size: 1.5em;
-           color: #ff5c5c;
-           font-weight: bold;
-       }
-
-       .form-group {
-           margin-bottom: 15px;
-       }
-
-       .form-group label {
-           display: block;
-           margin-bottom: 5px;
-           color: #666;
-       }
-
-       .form-group input[type="text"] {
-           width: 100%;
-           padding: 8px;
-           border: 1px solid #ddd;
-           border-radius: 5px;
-           box-sizing: border-box;
-       }
-
-       .checkbox-group {
-           display: flex;
-           align-items: center;
-           gap: 8px;
-           margin: 10px 0;
-       }
-       .like-section {
-            margin-top: 10px;
-            text-align: right;
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #ff5c5c;
+            font-weight: bold;
         }
 
-        .like-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 5px 10px;
-            border-radius: 15px;
-            transition: transform 0.2s;
+        .form-group {
+            margin-bottom: 15px;
         }
 
-        .like-button:hover {
-            transform: scale(1.1);
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
         }
 
-        .like-count {
-            margin-left: 5px;
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
         }
 
         .back-button {
@@ -184,165 +233,207 @@
             background-color: #ff5c5c;
             color: white;
             border: none;
-            border-radius: px;
+            border-radius: 5px;
             cursor: pointer;
             z-index: 1000;
-        } 
-       .modal textarea {
-           width: 100%;
-           height: 120px;
-           padding: 12px;
-           border: 1px solid #ddd;
-           border-radius: 5px;
-           font-size: 14px;
-           resize: vertical;
-           margin-bottom: 20px;
-           box-sizing: border-box;
-       }
-
-       .modal-buttons {
-           display: flex;
-           gap: 10px;
-           justify-content: flex-end;
-       }
-
-       .modal button {
-           padding: 10px 20px;
-           border: none;
-           border-radius: 5px;
-           cursor: pointer;
-           font-weight: 500;
-           transition: all 0.3s ease;
-       }
-
-       .modal button#submitMessage {
-           background-color: #ff5c5c;
-           color: white;
-       }
-
-       .modal button#closeModal {
-           background-color: #ddd;
-           color: #666;
-       }
-
-       .modal button:hover {
-           transform: translateY(-2px);
-           box-shadow: 0 2px 5px #00000033;
-       }
-        @media (max-height: 700px) {
-           .greetings-container {height: 50vh;}
         }
+
+        .modal textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .modal button#submitMessage {
+            background-color: #ff5c5c;
+            color: white;
+        }
+
+        .modal button#closeModal {
+            background-color: #ddd;
+            color: #666;
+        }
+
+        .modal button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px #00000033;
+        }
+
+        @media (max-height: 700px) {
+            .cards-container {
+                height: 50vh;
+            }
+        }
+
         @media (max-width: 768px) {
-           .greetings-container {width: 85%;padding: 20px;}
-           .add-button {bottom: 10%; right: 30px;}
-       }
-  </style>
+            .cards-container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .card {
+                min-width: 80%;
+            }
+
+            .add-button {
+                bottom: 10%;
+                right: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
-        <button class="back-button" onclick="window.location.href='/'">Quay lại</button>
-        <div class="greetings-container" id="greetings"></div>
-        <button class="add-button" id="addButton">+</button>
+<div class="container">
+    <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%"
+         style="position: absolute; z-index: -1;">
+    <button class="back-button" onclick="window.location.href='/'">Quay lại</button>
+    <div class="cards-container" id="cardsContainer">
+    </div>
+    <button class="add-button" id="addButton">+</button>
 
-        <div class="modal" id="modal">
-            <div class="modal-header">Gửi lời chúc</div>
-            <div class="form-group">
-                <label for="nameInput">Tên của bạn</label>
-                <input type="text" id="nameInput">
-            </div>
-            <div class="checkbox-group">
-                <input type="checkbox" id="privateCheck">
-                <label for="privateCheck">Gửi ẩn danh</label>
-            </div>
-            <div class="form-group">
-                <label for="messageInput">Lời nhắn</label>
-                <textarea id="messageInput" placeholder="Nhập lời chúc của bạn tại đây..."></textarea>
-            </div>
-            <div class="modal-buttons">
-                <button id="closeModal">Đóng</button>
-                <button id="submitMessage">Gửi</button>
-            </div>
+    <div class="modal" id="modal">
+        <div class="modal-header">Gửi lời chúc</div>
+        <div class="form-group">
+            <label for="nameInput">Tên của bạn</label>
+            <input type="text" id="nameInput">
         </div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="privateCheck">
+            <label for="privateCheck">Gửi ẩn danh</label>
+        </div>
+        <div class="form-group">
+            <label for="messageInput">Lời nhắn</label>
+            <textarea id="messageInput" placeholder="Nhập lời chúc của bạn tại đây..."></textarea>
+        </div>
+        <div class="modal-buttons">
+            <button id="closeModal">Đóng</button>
+            <button id="submitMessage">Gửi</button>
+        </div>
+    </div>
 
-  <div class="padogangs">
-      <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%" class="arisu">
-      <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%" class="padoru">
-      <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
-      <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta">
-  </div>
+    <div class="padogangs">
+        <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Arisu" width="20%" height="20%" class="arisu">
+        <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Padoru" width="23%" height="23%" class="padoru">
+        <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Gura" width="25%" height="25%" class="gura">
+        <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta">
+    </div>
 
-  <audio controls autoplay loop style="visibility: hidden; position: absolute;">
-      <source src="{{url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
-  </audio>
+    <audio controls autoplay loop style="visibility: hidden; position: absolute;">
+        <source src="{{ url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
+    </audio>
 </div>
-  <script>
-      const modal = document.getElementById('modal');
-        const addButton = document.getElementById('addButton');
-        const closeModal = document.getElementById('closeModal');
-        const submitMessage = document.getElementById('submitMessage');
-        const greetingsContainer = document.getElementById('greetings');
-        const messageInput = document.getElementById('messageInput');
-        const nameInput = document.getElementById('nameInput');
-        const privateCheck = document.getElementById('privateCheck');
+<script>
+    const modal = document.getElementById('modal');
+    const addButton = document.getElementById('addButton');
+    const closeModal = document.getElementById('closeModal');
+    const submitMessage = document.getElementById('submitMessage');
+    const cardsContainer = document.getElementById('cardsContainer');
+    const messageInput = document.getElementById('messageInput');
+    const nameInput = document.getElementById('nameInput');
+    const privateCheck = document.getElementById('privateCheck');
 
-        function createGreetingBox(name, message, likes, id) {
-        const newGreeting = document.createElement('div');
-        newGreeting.className = 'greeting-box';
-        newGreeting.dataset.id = id;
-        newGreeting.innerHTML = `
-            <strong>${name}:</strong><br>${message}
-            <div class="like-section">
-                <button class="like-button">❤️ <span class="like-count">${likes}</span></button>
-            </div>`;
-        
-        const likeButton = newGreeting.querySelector('.like-button');
+    function createCard(id, name, message, likes) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const topCircle = document.createElement('div');
+        topCircle.className = 'top-circle';
+        const img = document.createElement('img');
+        img.src = "{{ url_for('static', filename='images/gift.png') }}";
+        img.alt = "Ảnh đại diện";
+        topCircle.appendChild(img);
+        card.appendChild(topCircle);
+
+        const fromText = document.createElement('div');
+        fromText.className = 'from-text';
+        fromText.textContent = 'From.';
+        card.appendChild(fromText);
+
+        const nameText = document.createElement('div');
+        nameText.className = 'name-text';
+        nameText.textContent = name;
+        card.appendChild(nameText);
+
+        const messageText = document.createElement('div');
+        messageText.className = 'message-text';
+        messageText.textContent = message;
+        card.appendChild(messageText);
+
+        const likeSection = document.createElement('div');
+        likeSection.className = 'like-section';
+        const likeButton = document.createElement('button');
+        likeButton.className = 'like-button';
+        likeButton.innerHTML = '❤️ <span class="like-count">' + (likes || 0) + '</span>';
         likeButton.addEventListener('click', () => {
             const currentLikes = parseInt(likeButton.querySelector('.like-count').textContent);
             likeButton.querySelector('.like-count').textContent = currentLikes + 1;
             fetch('/update_likes', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message_id: id, likes: currentLikes + 1 })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({message_id: id, likes: currentLikes + 1})
             });
         });
-        
-        return newGreeting;
-        }
+        likeSection.appendChild(likeButton);
+        card.appendChild(likeSection);
+        card.dataset.id = id;
 
-        const loadMessages = () => {
+        return card;
+    }
+
+    const loadMessages = () => {
         fetch('/get_messages')
             .then(response => response.json())
             .then(messages => {
-                greetingsContainer.innerHTML = '';
-                messages.forEach(({ id, name, message, likes }) => {
-                    const newGreeting = createGreetingBox(name, message, likes || 0, id);
-                    greetingsContainer.appendChild(newGreeting);
+                cardsContainer.innerHTML = '';
+                messages.forEach(({id, name, message, likes}) => {
+                    const card = createCard(id, name, message, likes);
+                    cardsContainer.appendChild(card);
                 });
             });
-        };
+    };
 
-        privateCheck.addEventListener('change', () => {
+    privateCheck.addEventListener('change', () => {
         nameInput.disabled = privateCheck.checked;
-        if(privateCheck.checked) {
+        if (privateCheck.checked) {
             nameInput.value = '';
         }
-        });
+    });
 
-        addButton.addEventListener('click', () => {
+    addButton.addEventListener('click', () => {
         modal.style.display = 'block';
         nameInput.disabled = privateCheck.checked;
-        });
+    });
 
-        closeModal.addEventListener('click', () => {
+    closeModal.addEventListener('click', () => {
         modal.style.display = 'none';
         messageInput.value = '';
         nameInput.value = '';
         privateCheck.checked = false;
         nameInput.disabled = false;
-        });
+    });
 
-        submitMessage.addEventListener('click', () => {
+    submitMessage.addEventListener('click', () => {
         const message = messageInput.value.trim();
         const name = privateCheck.checked ? 'Ẩn danh' : nameInput.value.trim();
 
@@ -358,40 +449,40 @@
 
         fetch('/add_message', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, message })
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, message})
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                const newGreeting = createGreetingBox(name, message, 0, data.id);
-                greetingsContainer.appendChild(newGreeting);
-                greetingsContainer.scrollTop = greetingsContainer.scrollHeight;
-            } else {
-                alert('Có lỗi xảy ra: ' + data.message);
-            }
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    const newCard = createCard(data.id, name, message, 0);
+                    cardsContainer.appendChild(newCard);
+                    cardsContainer.scrollLeft = cardsContainer.scrollWidth;
+                } else {
+                    alert('Có lỗi xảy ra: ' + data.message);
+                }
+            });
 
         modal.style.display = 'none';
         messageInput.value = '';
         nameInput.value = '';
         privateCheck.checked = false;
         nameInput.disabled = false;
-        });
+    });
 
-        window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
         }
-        }
+    }
 
-        document.addEventListener('keydown', function(event) {
+    document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && modal.style.display === 'block') {
             modal.style.display = 'none';
         }
-        });
+    });
 
-        document.addEventListener('DOMContentLoaded', loadMessages);
-  </script>
+    document.addEventListener('DOMContentLoaded', loadMessages);
+</script>
 </body>
 </html>
