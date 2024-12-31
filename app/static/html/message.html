@@ -1,107 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Message</title>
-        <style>
-            *{font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; box-sizing: border-box;}
-            body{margin: 0;}
-            .scrolling-wrapper{
-                overflow-x:auto;
-                overflow-y:hidden;
-                white-space:nowrap;
-                -webkit-overflow-scrolling:touch;
-                padding: 1.5vh 0;
-            }
-            .scrolling-wrapper::-webkit-scrollbar{display:none;}
-            .card{
-                display:inline-block;
-                margin-right:1.5vh;
-                background-color:#f0f0f0;
-                border:1px solid #ddd;
-                border-radius: 20px;
-                width:40vw;
-                height: 50vh;
-                box-shadow:0 0.3vh 0.6vh rgba(0,0,0,0.1);
-                vertical-align:top;
-                padding:0;
-                min-width: 280px;
-            }
-            .message{
-                width: calc(100% - 2 * 5%);
-                height: calc(100% - 2 * 5%);
-                border: 0.3vh dashed red;
-                border-radius: 14px;
-                margin: 5%;
-                display: flex;
-                flex-direction: column;
-                padding: 0;
-                overflow: hidden;
-            }
-            .message h3{
-                margin:1.5vh;
-                color:#333;
-                font-size:1.2rem;
-            }
-             .message textarea{
-                width:90%;
-                border:1px solid #ccc;
-                border-radius:0.6vh;
-                padding:1.2vh;
-                font-size:1vw;
-                resize:vertical;
-                flex: 1;
-                margin:0 1.5vh 1.5vh 1.5vh;
-                box-sizing: border-box;
-                overflow: auto;
-            }
-            @media screen and (max-width: 768px) {
-                .card {
-                    width: 80vw;
-                    min-width: 280px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <div class="scrolling-wrapper">
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-            <div class="card">
-                <div class="message">
-                    <h3>From: cc</h3>
-                    <textarea></textarea>
-                </div>
-            </div>
-          </div>
-    </body>
+<head>
+    <style>
+        .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background-color: #FFE0B2;
+            border-radius: 20px;
+            border: 5px dashed #FFA000;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .top-circle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 70px;
+            background-color: #FFB300;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; 
+        }
+
+        .top-circle img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+            object-fit: cover; 
+        }
+
+        .from-text {
+            font-weight: bold;
+            color: #FF6F00;
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .name-text {
+            font-weight: bold;
+            color: #E65100;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .message-text {
+            color: #6D4C41;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="top-circle">
+            <img src="placeholder.png" alt="thay ảnh này sau">
+        </div>
+        <div class="from-text">From.</div>
+        <div class="name-text">(tên người gửi)</div>
+        <div class="message-text">Lời chúc gì đó</div>
+    </div>
+</body>
 </html>
