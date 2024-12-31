@@ -1,0 +1,50 @@
+.padogangs {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-left: 50px;
+    }
+
+    .herta {
+    transform: rotateY(180deg);
+    animation: moveHerta 12s linear infinite;
+    }
+
+    .gura {
+    transform: rotateY(180deg);
+    animation: moveGura 12s linear infinite;
+    }
+
+    .padoru {
+    transform: rotateY(180deg);
+    animation: movePadoru 12s linear infinite;
+    }
+
+    .arisu {
+    transform: rotateY(180deg);
+    animation: moveArisu 12s linear infinite;
+    }
+
+    @keyframes moveHerta {
+    0% { transform: translateX(-500%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+    }
+
+    @keyframes moveGura {
+    0% { transform: translateX(-550%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+    }
+
+    @keyframes movePadoru {
+    0% { transform: translateX(-600%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+    }
+
+    @keyframes moveArisu {
+    0% { transform: translateX(-650%) rotateY(180deg) }
+    100% { transform: translateX(500%) rotateY(180deg) }
+    }
