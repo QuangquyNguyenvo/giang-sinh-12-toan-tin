@@ -58,9 +58,11 @@
 
         .box-body:hover .img {
             opacity: 1;
-            z-index: 0;
-            transform: translateY(-550px) translateX(-35%);
-            border-radius: 14px;
+            z-index: 2;
+            transform: translateY(-115%) translateX(-40%);
+            border-radius: 4
+            px;
+            box-shadow: 0 8px 4px -4px rgba(0, 0, 0, 0.3);
         }
 
         .box-body:hover .box-lid {
