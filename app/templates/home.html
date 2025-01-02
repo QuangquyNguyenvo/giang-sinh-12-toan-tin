@@ -89,13 +89,12 @@
     box-shadow: none;
     }
 
-
     @media screen and (max-width: 768px) {
     button.Message-Button {
         font-size: 2em;
         padding: 1em 1.5em;
     }
-    
+
     .hopqua {
         max-width: 50vw;
         max-height: 50vh;
@@ -107,39 +106,51 @@
         font-size: 1.5em;
         padding: 0.8em 1.2em;
     }
-    
+
     .hopqua {
         max-width: 60vw;
         max-height: 60vh;
     }
     }
 
-    @keyframes blink{
-    0%{
-        border-right-color:transparent;
+    @keyframes blink {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.5;
+        }
     }
-    50%{
-        border-right-color:transparent;
+
+    @keyframes shake {
+        0%, 100% { transform: rotate(0deg); }
+        10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg); }
+        20%, 40%, 60%, 80% { transform: rotate(1deg); }
     }
-    51%{
-        border-right-color:#fff;
+
+    .attention-blink {
+        animation: blink 1s infinite;
     }
-    100%{
-        border-right-color:#fff;
+
+    .attention-shake {
+        animation: shake 0.5s infinite;
     }
+
+    .control-btn-secret {
+        transition: transform 0.3s ease-in-out;
     }
 
     </style>
 </head>
 <body>
-    
+
     <div class="container">
         <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
 
         <div class="user-controller">
         <button class="Message-Button">TIẾP TỤC</button>
         <canvas id="snow"></canvas>
-        
+
         <div class="hopqua">
             <div class="row">
                 <div class="col-12 mt-5 d-flex justify-content-center">
@@ -147,7 +158,7 @@
                         <div class="box-body">
                             <img class="img" src="{{ url_for('static', filename='images/letter.png') }}" width="900" height="1100" >
                             <div class="box-lid">
-                                
+
                                 <div class="box-bowtie"></div>
                             </div>
                         </div>
@@ -160,9 +171,8 @@
             <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%" class="arisu">
             <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%" class="padoru">
             <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
-            <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta"> 
+            <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta">
         </div>
-        <!-- music -->
         <div class="player-wrapper">
             <img class="dia" src="https://img.pikbest.com/wp/202345/illustration-christmas-music_9592952.jpg!w700wp">
             <div class="music-player">
@@ -184,19 +194,17 @@
                             </svg>
                         </button>
                         <button class="control-btn" id="playPauseBtn">
-                            
                             <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="6" y="4" width="4" height="16"></rect>
                                 <rect x="14" y="4" width="4" height="16"></rect>
-                                
                             </svg>
                             <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </button>
-                        <button class="control-btn">
+                        <button class="control-btn control-btn-secret skip-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 4 15 12 5 20 5 4"></polygon>
@@ -211,18 +219,17 @@
             <source src="{{url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
         </audio>
         <script>
-            //tuyết 
             const button = document.querySelector('.Message-Button');
             button.addEventListener('click', () => {
                 window.location.href = "{{ url_for('next_page') }}";
             });
             var Snow = {
-                el: "#snow", 
-                density: 10000, // higher = fewer bits
-                maxHSpeed: 2, 
+                el: "#snow",
+                density: 10000,
+                maxHSpeed: 2,
                 minFallSpeed: 0.5,
                     canvas: null,
-                    ctx: null, 
+                    ctx: null,
                 particles: [],
                 colors: [],
                 mp: 1,
@@ -245,18 +252,18 @@
                         {
                             var size = Math.random()*4+5;
                             this.particles.push({
-                                x: Math.random()*this.w, //x-coordinate
-                                y: Math.random()*this.h, //y-coordinate
+                                x: Math.random()*this.w,
+                                y: Math.random()*this.h,
                                 w: size,
                                 h: size,
-                                vy: this.minFallSpeed + Math.random(), //density
+                                vy: this.minFallSpeed + Math.random(),
                                 vx:(Math.random()*this.maxHSpeed) - this.maxHSpeed/2,
                                 fill: "#ffffff",
                                 s: (Math.random() * 0.2) - 0.1
                             });
                         }
                 },
-                
+
                 render(){
                         this.ctx.clearRect(0, 0, this.w, this.h);
                         this.particles.forEach((p,i) => {
@@ -276,17 +283,34 @@
                 },
                 destroy(){
                     this.quit = true;
-                }  
+                }
                 };
                 var confetti = Snow.init();
-            // nhạc
             document.addEventListener('DOMContentLoaded', () => {
                 const audioPlayer = document.getElementById('audioPlayer');
                 const playPauseBtn = document.getElementById('playPauseBtn');
+                const modeBtn = document.querySelector('.mode-btn');
+                const skipBtn = document.querySelector('.skip-btn');
                 const pauseIcon = document.getElementById('pauseIcon');
                 const playIcon = document.getElementById('playIcon');
 
-                
+                let modeClickCount = 0;
+                let skipClickCount = 0;
+                let baseScaleSkip = 1;
+                const maxScaleSkip = 10;
+
+                function addAttentionAnimation(element) {
+                    const animationClass = Math.random() > 0.5 ? 'attention-blink' : 'attention-shake';
+                    element.classList.add(animationClass);
+                    setTimeout(() => {
+                        element.classList.remove(animationClass);
+                    }, 1000);
+                }
+
+                setInterval(() => {
+                    addAttentionAnimation(skipBtn);
+                }, 10000);
+
                 audioPlayer.play();
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'inline-block';
@@ -300,6 +324,38 @@
                         audioPlayer.pause();
                         playIcon.style.display = 'inline-block';
                         pauseIcon.style.display = 'none';
+                    }
+                });
+
+                modeBtn.addEventListener('click', () => {
+                    modeClickCount++;
+                    if (modeClickCount >= 5) {
+                        alert('Code không nằm ở đây đâu tìm chỗ khác đi mmb');
+                        modeClickCount = 0;
+                    }
+                });
+
+                skipBtn.addEventListener('click', () => {
+                    skipClickCount++;
+                    baseScaleSkip = Math.min(baseScaleSkip + 0.3, maxScaleSkip);
+                    skipBtn.style.transform = `scale(${baseScaleSkip})`;
+
+                    if (skipClickCount >= 2) {
+                        const maxX = window.innerWidth - skipBtn.offsetWidth;
+                        const maxY = window.innerHeight - skipBtn.offsetHeight;
+                        const randomX = Math.floor(Math.random() * maxX);
+                        const randomY = Math.floor(Math.random() * maxY);
+                        skipBtn.style.left = randomX + 'px';
+                        skipBtn.style.top = randomY + 'px';
+
+                        if (skipClickCount >= 15) {
+                            alert('Mã code nè thằng L');
+                            skipClickCount = 0;
+                            baseScaleSkip = 1;
+                            skipBtn.style.transform = `scale(${baseScaleSkip})`;
+                            skipBtn.style.left = '';
+                            skipBtn.style.top = '';
+                        }
                     }
                 });
             });
