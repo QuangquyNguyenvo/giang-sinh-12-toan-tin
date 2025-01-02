@@ -79,28 +79,6 @@
             flex: 0 0 auto;
         }
 
-        .top-circle {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70px;
-            height: 70px;
-            background-color: #FFB300;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .top-circle img {
-            max-width: 100%;
-            max-height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
         .from-text {
             font-weight: bold;
             color: #FF6F00;
@@ -112,7 +90,22 @@
             font-weight: bold;
             color: #E65100;
             font-size: 24px;
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* Adjusted margin */
+            word-wrap: break-word;
+        }
+
+        .to-text {
+            font-weight: bold;
+            color: #388E3C;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .recipient-name-text {
+            font-weight: bold;
+            color: #388E3C; 
+            font-size: 30px; 
+            margin-bottom: 10px;
             word-wrap: break-word;
         }
 
@@ -121,7 +114,7 @@
             font-size: 16px;
             word-wrap: break-word;
             overflow-y: auto;
-            max-height: calc(100% - 150px);
+            max-height: calc(100% - 170px); /* Adjusted max-height */
         }
 
         .like-section {
@@ -317,6 +310,10 @@
     <div class="modal" id="modal">
         <div class="modal-header">Gửi lời chúc</div>
         <div class="form-group">
+            <label for="recipientInput">Gửi đến</label>
+            <input type="text" id="recipientInput">
+        </div>
+        <div class="form-group">
             <label for="nameInput">Tên của bạn</label>
             <input type="text" id="nameInput">
         </div>
@@ -346,26 +343,19 @@
     </audio>
 </div>
 <script>
-    const modal = document.getElementById('modal');
+        const modal = document.getElementById('modal');
     const addButton = document.getElementById('addButton');
     const closeModal = document.getElementById('closeModal');
     const submitMessage = document.getElementById('submitMessage');
     const cardsContainer = document.getElementById('cardsContainer');
     const messageInput = document.getElementById('messageInput');
     const nameInput = document.getElementById('nameInput');
+    const recipientInput = document.getElementById('recipientInput');
     const privateCheck = document.getElementById('privateCheck');
 
-    function createCard(id, name, message, likes) {
+    function createCard(id, name, recipient, message, likes) {
         const card = document.createElement('div');
         card.className = 'card';
-
-        const topCircle = document.createElement('div');
-        topCircle.className = 'top-circle';
-        const img = document.createElement('img');
-        img.src = "{{ url_for('static', filename='images/gift.png') }}";
-        img.alt = "Ảnh đại diện";
-        topCircle.appendChild(img);
-        card.appendChild(topCircle);
 
         const fromText = document.createElement('div');
         fromText.className = 'from-text';
@@ -376,6 +366,16 @@
         nameText.className = 'name-text';
         nameText.textContent = name;
         card.appendChild(nameText);
+
+        const toText = document.createElement('div');
+        toText.className = 'to-text';
+        toText.textContent = 'To';
+        card.appendChild(toText);
+
+        const recipientNameText = document.createElement('div');
+        recipientNameText.className = 'recipient-name-text';
+        recipientNameText.textContent = recipient;
+        card.appendChild(recipientNameText);
 
         const messageText = document.createElement('div');
         messageText.className = 'message-text';
@@ -389,11 +389,12 @@
         likeButton.innerHTML = '❤️ <span class="like-count">' + (likes || 0) + '</span>';
         likeButton.addEventListener('click', () => {
             const currentLikes = parseInt(likeButton.querySelector('.like-count').textContent);
-            likeButton.querySelector('.like-count').textContent = currentLikes + 1;
+            const newLikes = currentLikes + 1;
+            likeButton.querySelector('.like-count').textContent = newLikes;
             fetch('/update_likes', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({message_id: id, likes: currentLikes + 1})
+                body: JSON.stringify({message_id: id, likes: newLikes})
             });
         });
         likeSection.appendChild(likeButton);
@@ -408,8 +409,8 @@
             .then(response => response.json())
             .then(messages => {
                 cardsContainer.innerHTML = '';
-                messages.forEach(({id, name, message, likes}) => {
-                    const card = createCard(id, name, message, likes);
+                messages.forEach(({id, name, recipient, message, likes}) => {
+                    const card = createCard(id, name, recipient, message, likes);
                     cardsContainer.appendChild(card);
                 });
             });
@@ -431,6 +432,7 @@
         modal.style.display = 'none';
         messageInput.value = '';
         nameInput.value = '';
+        recipientInput.value = '';
         privateCheck.checked = false;
         nameInput.disabled = false;
     });
@@ -438,6 +440,12 @@
     submitMessage.addEventListener('click', () => {
         const message = messageInput.value.trim();
         const name = privateCheck.checked ? 'Ẩn danh' : nameInput.value.trim();
+        const recipient = recipientInput.value.trim();
+
+        if (!recipient) {
+            alert('Vui lòng nhập tên người nhận!');
+            return;
+        }
 
         if (!message) {
             alert('Lời chúc không được để trống!');
@@ -452,12 +460,12 @@
         fetch('/add_message', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name, message})
+            body: JSON.stringify({name: name, recipient: recipient, message: message})
         })
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    const newCard = createCard(data.id, name, message, 0);
+                    const newCard = createCard(null, name, recipient, message, 0);
                     cardsContainer.appendChild(newCard);
                     cardsContainer.scrollLeft = cardsContainer.scrollWidth;
                 } else {
@@ -468,6 +476,7 @@
         modal.style.display = 'none';
         messageInput.value = '';
         nameInput.value = '';
+        recipientInput.value = '';
         privateCheck.checked = false;
         nameInput.disabled = false;
     });
