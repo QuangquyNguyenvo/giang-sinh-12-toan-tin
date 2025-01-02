@@ -10,144 +10,190 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dia.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/padogangs.css') }}">
     <style>
-    .container {
-   margin-top: -15%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-    }
-    body {
-    -webkit-tap-highlight-color: transparent;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    background-size: cover;
-    min-height: 100vh;
-    margin: 0;
-    font-family: sans-serif;
-    position: relative;
-    max-height: fit-content;
-    }
-
-    button.Message-Button {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    outline: none;
-    border: 0;
-    text-decoration: none;
-    font-family: inherit;
-    font-size: 3em;
-    font-weight: 600;
-    color: #5c5a3d;
-    text-transform: uppercase;
-    padding: 1.25em 2em;
-    background: #f8fce0;
-    border: 2px solid #c2c4a3;
-    border-radius: 0.75em;
-    transform-style: preserve-3d;
-    transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
-                transform 150ms cubic-bezier(0, 0, 0.58, 1);
-    }
-
-    button.Message-Button::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #e9edc4;
-    border-radius: inherit;
-    transform: translate3d(0, 0.75em, -1em);
-    transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
-    }
-
-    button.Message-Button:hover {
-    background: #fcffe6;
-    transform: translate(-50%, calc(-50% + 0.25em));
-    }
-
-    button.Message-Button:hover::before {
-    transform: translate3d(0, 0.5em, -1em);
-    }
-
-    button.Message-Button:active {
-    background: #fcffe6;
-    transform: translate(-50%, calc(-50% + 0.75em));
-    }
-
-    button.Message-Button:active::before {
-    transform: translate3d(0, 0, -1em);
-    }
-
-    button.Message-Button:focus {
-    outline: none;
-    box-shadow: none;
-    }
-
-    @media screen and (max-width: 768px) {
-    button.Message-Button {
-        font-size: 2em;
-        padding: 1em 1.5em;
-    }
-
-    .hopqua {
-        max-width: 50vw;
-        max-height: 50vh;
-    }
-    }
-
-    @media screen and (max-width: 480px) {
-    button.Message-Button {
-        font-size: 1.5em;
-        padding: 0.8em 1.2em;
-    }
-
-    .hopqua {
-        max-width: 60vw;
-        max-height: 60vh;
-    }
-    }
-
-    @keyframes blink {
-        0%, 100% {
-            opacity: 1;
+        .container {
+            margin-top: -15%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        50% {
-            opacity: 0.5;
+
+        body {
+            -webkit-tap-highlight-color: transparent;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            position: relative;
+            max-height: fit-content;
         }
-    }
 
-    @keyframes shake {
-        0%, 100% { transform: rotate(0deg); }
-        10%, 30%, 50%, 70%, 90% { transform: rotate(-1deg); }
-        20%, 40%, 60%, 80% { transform: rotate(1deg); }
-    }
+        button.Message-Button {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 3em;
+            font-weight: 600;
+            color: #5c5a3d;
+            text-transform: uppercase;
+            padding: 1.25em 2em;
+            background: #f8fce0;
+            border: 2px solid #c2c4a3;
+            border-radius: 0.75em;
+            transform-style: preserve-3d;
+            transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
+            transform 150ms cubic-bezier(0, 0, 0.58, 1);
+        }
 
-    .attention-blink {
-        animation: blink 1s infinite;
-    }
+        button.Message-Button::before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #e9edc4;
+            border-radius: inherit;
+            transform: translate3d(0, 0.75em, -1em);
+            transition: transform 150ms cubic-bezier(0, 0, 0.58, 1);
+        }
 
-    .attention-shake {
-        animation: shake 0.5s infinite;
-    }
+        button.Message-Button:hover {
+            background: #fcffe6;
+            transform: translate(-50%, calc(-50% + 0.25em));
+        }
 
-    .control-btn-secret {
-        transition: transform 0.3s ease-in-out;
-    }
+        button.Message-Button:hover::before {
+            transform: translate3d(0, 0.5em, -1em);
+        }
 
+        button.Message-Button:active {
+            background: #fcffe6;
+            transform: translate(-50%, calc(-50% + 0.75em));
+        }
+
+        button.Message-Button:active::before {
+            transform: translate3d(0, 0, -1em);
+        }
+
+        button.Message-Button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            button.Message-Button {
+                font-size: 2em;
+                padding: 1em 1.5em;
+            }
+
+            .hopqua {
+                max-width: 50vw;
+                max-height: 50vh;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            button.Message-Button {
+                font-size: 1.5em;
+                padding: 0.8em 1.2em;
+            }
+
+            .hopqua {
+                max-width: 60vw;
+                max-height: 60vh;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: rotate(-1deg);
+            }
+            20%, 40%, 60%, 80% {
+                transform: rotate(1deg);
+            }
+        }
+
+        .attention-blink {
+            animation: blink 1s infinite;
+        }
+
+        .attention-shake {
+            animation: shake 0.5s infinite;
+        }
+
+        .control-btn-secret {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .code-input-container {
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(248, 252, 224, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #c2c4a3;
+            z-index: 10;
+        }
+
+        .code-input-container input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #c2c4a3;
+        }
+
+        .code-input-container button {
+            padding: 10px 20px;
+            background-color: #f8fce0;
+            border: 2px solid #c2c4a3;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .code-result {
+            margin-top: 10px;
+        }
+
+        .code-result img {
+            max-width: 200px;
+            max-height: 200px;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%" style="position: absolute; z-index: -1;">
+<div class="container">
+    <img src="{{ url_for('static', filename='images/background.png') }}" width="100%" height="100%"
+         style="position: absolute; z-index: -1;">
 
-        <div class="user-controller">
+    <div class="user-controller">
         <button class="Message-Button">TIẾP TỤC</button>
         <canvas id="snow"></canvas>
 
@@ -156,9 +202,9 @@
                 <div class="col-12 mt-5 d-flex justify-content-center">
                     <div class="box">
                         <div class="box-body">
-                            <img class="img" src="{{ url_for('static', filename='images/letter.png') }}" width="900" height="1100" >
+                            <img class="img" src="{{ url_for('static', filename='images/letter.png') }}" width="900"
+                                 height="1100">
                             <div class="box-lid">
-
                                 <div class="box-bowtie"></div>
                             </div>
                         </div>
@@ -168,10 +214,14 @@
         </div>
 
         <div class="padogangs">
-            <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%" class="arisu">
-            <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%" class="padoru">
-            <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%" class="gura">
-            <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%" class="herta">
+            <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%"
+                 class="arisu">
+            <img src="{{ url_for('static', filename='images/padoru.gif') }}" alt="Herta" width="23%" height="23%"
+                 class="padoru">
+            <img src="{{ url_for('static', filename='images/gura.gif') }}" alt="Herta" width="25%" height="25%"
+                 class="gura">
+            <img src="{{ url_for('static', filename='images/herta.gif') }}" alt="Herta" width="25%" height="25%"
+                 class="herta">
         </div>
         <div class="player-wrapper">
             <img class="dia" src="https://img.pikbest.com/wp/202345/illustration-christmas-music_9592952.jpg!w700wp">
@@ -186,7 +236,7 @@
                     <div class="controls">
                         <button class="control-btn mode-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
+                                 stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="17 1 21 5 17 9"></polyline>
                                 <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
                                 <polyline points="7 23 3 19 7 15"></polyline>
@@ -195,18 +245,18 @@
                         </button>
                         <button class="control-btn" id="playPauseBtn">
                             <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect x="6" y="4" width="4" height="16"></rect>
                                 <rect x="14" y="4" width="4" height="16"></rect>
                             </svg>
                             <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </button>
                         <button class="control-btn control-btn-secret skip-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
+                                 stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="5 4 15 12 5 20 5 4"></polygon>
                                 <line x1="19" y1="5" x2="19" y2="19"></line>
                             </svg>
@@ -216,76 +266,111 @@
             </div>
         </div>
         <audio id="audioPlayer" controls autoplay loop style="visibility: hidden; position: absolute;">
-            <source src="{{url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
+            <source src="{{ url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
         </audio>
+
+        <button id="showCodeInputBtn" style="position: absolute; top: 8%; left: 50%; transform: translateX(-50%); padding: 10px 20px; background-color: #f8fce0; border: 2px solid #c2c4a3; border-radius: 5px; cursor: pointer;">Nhập Code</button>
+
+        <div id="code-input-container" class="code-input-container">
+            <input type="text" id="codeInput" placeholder="Nhập mã code">
+            <button id="submitCodeBtn">Kiểm tra</button>
+            <div id="codeResult" class="code-result"></div>
+        </div>
+
         <script>
             const button = document.querySelector('.Message-Button');
             button.addEventListener('click', () => {
                 window.location.href = "{{ url_for('next_page') }}";
             });
+
+            const showCodeInputBtn = document.getElementById('showCodeInputBtn');
+            const codeInputContainer = document.getElementById('code-input-container');
+            const codeInput = document.getElementById('codeInput');
+            const submitCodeBtn = document.getElementById('submitCodeBtn');
+            const codeResult = document.getElementById('codeResult');
+
+            showCodeInputBtn.addEventListener('click', () => {
+                codeInputContainer.style.display = 'flex';
+            });
+
+            submitCodeBtn.addEventListener('click', () => {
+                const code = codeInput.value;
+                codeResult.innerHTML = ''; // Clear previous results
+                if (code === "12TTLE") {
+                    const qrImage = document.createElement('img');
+                    qrImage.src = "{{ url_for('static', filename='images/qr.png') }}";
+                    codeResult.appendChild(qrImage);
+                } else if (code === "12TTIN") {
+                    codeResult.textContent = "tìm tiếp đi code sao dễ đoán vậy được =)))";
+                } else {
+                    const qr2Image = document.createElement('img');
+                    qr2Image.src = "{{ url_for('static', filename='images/qr2.png') }}";
+                    codeResult.appendChild(qr2Image);
+                }
+            });
+
             var Snow = {
                 el: "#snow",
                 density: 10000,
                 maxHSpeed: 2,
                 minFallSpeed: 0.5,
-                    canvas: null,
-                    ctx: null,
+                canvas: null,
+                ctx: null,
                 particles: [],
                 colors: [],
                 mp: 1,
                 quit: false,
-                init(){
+                init() {
                     this.canvas = document.querySelector(this.el);
                     this.ctx = this.canvas.getContext("2d");
                     this.reset();
                     requestAnimationFrame(this.render.bind(this));
                     window.addEventListener("resize", this.reset.bind(this));
                 },
-                reset(){
+                reset() {
                     this.w = window.innerWidth;
                     this.h = window.innerHeight;
                     this.canvas.width = this.w;
                     this.canvas.height = this.h;
                     this.particles = [];
                     this.mp = Math.ceil(this.w * this.h / this.density);
-                        for(var i = 0; i < this.mp; i++)
-                        {
-                            var size = Math.random()*4+5;
-                            this.particles.push({
-                                x: Math.random()*this.w,
-                                y: Math.random()*this.h,
-                                w: size,
-                                h: size,
-                                vy: this.minFallSpeed + Math.random(),
-                                vx:(Math.random()*this.maxHSpeed) - this.maxHSpeed/2,
-                                fill: "#ffffff",
-                                s: (Math.random() * 0.2) - 0.1
-                            });
-                        }
+                    for (var i = 0; i < this.mp; i++) {
+                        var size = Math.random() * 4 + 5;
+                        this.particles.push({
+                            x: Math.random() * this.w,
+                            y: Math.random() * this.h,
+                            w: size,
+                            h: size,
+                            vy: this.minFallSpeed + Math.random(),
+                            vx: (Math.random() * this.maxHSpeed) - this.maxHSpeed / 2,
+                            fill: "#ffffff",
+                            s: (Math.random() * 0.2) - 0.1
+                        });
+                    }
                 },
 
-                render(){
-                        this.ctx.clearRect(0, 0, this.w, this.h);
-                        this.particles.forEach((p,i) => {
-                    p.y += p.vy;
-                            p.x += p.vx;
-                            this.ctx.fillStyle = p.fill;
-                            this.ctx.fillRect(p.x, p.y, p.w, p.h);
-                    if(p.x > this.w+5 || p.x < -5 || p.y > this.h){
-                        p.x = Math.random()*this.w;
-                        p.y = -10;
-                            }
+                render() {
+                    this.ctx.clearRect(0, 0, this.w, this.h);
+                    this.particles.forEach((p, i) => {
+                        p.y += p.vy;
+                        p.x += p.vx;
+                        this.ctx.fillStyle = p.fill;
+                        this.ctx.fillRect(p.x, p.y, p.w, p.h);
+                        if (p.x > this.w + 5 || p.x < -5 || p.y > this.h) {
+                            p.x = Math.random() * this.w;
+                            p.y = -10;
+                        }
                     });
-                    if(this.quit){
-                    return;
+                    if (this.quit) {
+                        return;
                     }
-                        requestAnimationFrame(this.render.bind(this));
+                    requestAnimationFrame(this.render.bind(this));
                 },
-                destroy(){
+                destroy() {
                     this.quit = true;
                 }
-                };
-                var confetti = Snow.init();
+            };
+            var confetti = Snow.init();
             document.addEventListener('DOMContentLoaded', () => {
                 const audioPlayer = document.getElementById('audioPlayer');
                 const playPauseBtn = document.getElementById('playPauseBtn');
@@ -362,5 +447,6 @@
         </script>
 
     </div>
+</div>
 </body>
 </html>
