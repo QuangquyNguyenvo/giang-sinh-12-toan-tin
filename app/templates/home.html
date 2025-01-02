@@ -50,6 +50,7 @@
             transform-style: preserve-3d;
             transition: background 150ms cubic-bezier(0, 0, 0.58, 1),
             transform 150ms cubic-bezier(0, 0, 0.58, 1);
+            z-index: 2;
         }
 
         button.Message-Button::before {
@@ -214,6 +215,8 @@
             </div>
         </div>
 
+
+        <img src="{{ url_for('static', filename='images/guracode.png') }}" alt="Guracode" class="guracode">
         <div class="padogangs">
             <img src="{{ url_for('static', filename='images/arisu.gif') }}" alt="Herta" width="20%" height="20%"
                  class="arisu">
@@ -452,7 +455,7 @@
                         skipBtn.style.top = randomY + 'px';
 
                         if (skipClickCount >= 15) {
-                            alert('Mã code nè thằng L');
+                            alert('Mã code nè thằng "L"');
                             skipClickCount = 0;
                             baseScaleSkip = 1;
                             skipBtn.style.transform = `scale(${baseScaleSkip})`;
@@ -464,7 +467,34 @@
             });
         </script>
 
+        <script>
+            let touchStart = 0;
+let touchEnd = 0;
+
+document.addEventListener('touchstart', function(e) {
+    touchStart = e.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', function(e) {
+    touchEnd = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', function() {
+    // Nếu vuốt xuống từ trên đủ khoảng cách (ở đây là 150px)
+    if (touchStart < touchEnd && (touchEnd - touchStart) > 150) {
+        // Chỉ reload khi đang ở đầu trang
+        if (window.scrollY === 0) {
+            window.location.reload();
+        }
+    }
+    touchStart = 0;
+    touchEnd = 0;
+});
+        </script>
+
     </div>
 </div>
+
+
 </body>
 </html>
