@@ -48,3 +48,29 @@
     0% { transform: translateX(-650%) rotateY(180deg) }
     100% { transform: translateX(500%) rotateY(180deg) }
     }
+
+
+    .guracode {
+        position: absolute;
+        display: flex;
+        justify-content: space-around;
+        margin-left: 50px;
+        right: 35%;
+        top: 48.5%;
+        animation: moveUpDown 8s infinite;
+        width:30%;
+        height:25%; 
+        z-index:1;
+    }
+    
+    @keyframes moveUpDown {
+        0% {
+            top: 48.5%; /* Vị trí ban đầu */
+        }
+        50% {
+            top: 55.5%; /* Di chuyển xuống dưới */
+        }
+        100% {
+            top: 48.5%; /* Trở về vị trí ban đầu */
+        }
+    }
