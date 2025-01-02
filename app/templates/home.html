@@ -152,7 +152,7 @@
             top: 70%;
             left: 50%;
             transform: translate(-50%, -50%);
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             align-items: center;
             background-color: rgba(248, 252, 224, 0.8);
@@ -175,6 +175,7 @@
             border: 2px solid #c2c4a3;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px; 
         }
 
         .code-result {
@@ -274,6 +275,7 @@
         <div id="code-input-container" class="code-input-container">
             <input type="text" id="codeInput" placeholder="Nhập mã code">
             <button id="submitCodeBtn">Kiểm tra</button>
+            <button id="closeCodeInputBtn">Đóng</button> 
             <div id="codeResult" class="code-result"></div>
         </div>
 
@@ -287,6 +289,7 @@
             const codeInputContainer = document.getElementById('code-input-container');
             const codeInput = document.getElementById('codeInput');
             const submitCodeBtn = document.getElementById('submitCodeBtn');
+            const closeCodeInputBtn = document.getElementById('closeCodeInputBtn'); 
             const codeResult = document.getElementById('codeResult');
 
             showCodeInputBtn.addEventListener('click', () => {
@@ -295,17 +298,32 @@
 
             submitCodeBtn.addEventListener('click', () => {
                 const code = codeInput.value;
-                codeResult.innerHTML = ''; // Clear previous results
+                codeResult.innerHTML = '';
                 if (code === "12TTLE") {
                     const qrImage = document.createElement('img');
                     qrImage.src = "{{ url_for('static', filename='images/qr.png') }}";
                     codeResult.appendChild(qrImage);
-                } else if (code === "12TTIN") {
+                }else if (code === "12Ttle" || code==="12ttle" || code==="12TTle") {
+                    codeResult.textContent = "code không sai nhưng m nhập sai =))";
+                } 
+                else if (code === "12TTIN" || code==="12ttin" || code==="12Ttin") {
                     codeResult.textContent = "tìm tiếp đi code sao dễ đoán vậy được =)))";
                 } else {
                     const qr2Image = document.createElement('img');
                     qr2Image.src = "{{ url_for('static', filename='images/qr2.png') }}";
                     codeResult.appendChild(qr2Image);
+                }
+            });
+
+            closeCodeInputBtn.addEventListener('click', () => {
+                codeInputContainer.style.display = 'none'; 
+            });
+
+            document.addEventListener('click', function(event) {
+                if (codeInputContainer.style.display === 'flex' &&
+                    event.target !== showCodeInputBtn &&
+                    !codeInputContainer.contains(event.target)) {
+                    codeInputContainer.style.display = 'none';
                 }
             });
 
