@@ -104,14 +104,37 @@ background: none;
 border: none;
 cursor: pointer;
 padding: 8px;
+
+
 }
 
 .control-btn svg {
 width: 18px;
 height: 18px;
 stroke: #333;
+
 }
 
 #pauseIcon {
 display: none;
+
+}
+
+
+#nextIcon{
+    animation: rotate-shake 4s ease-in-out infinite;
+}
+
+@keyframes rotate-shake {
+    0% { transform: rotate(0deg); }           /* Vị trí ban đầu */
+    5.56% { transform: rotate(-20deg); }      /* Lắc lần 1 xuống */
+    11.11% { transform: rotate(20deg); }      /* Lắc lần 1 lên */
+    16.67% { transform: rotate(0deg); }       /* Quay về vị trí ban đầu */
+    22.22% { transform: rotate(-20deg); }     /* Lắc lần 2 xuống */
+    27.78% { transform: rotate(20deg); }      /* Lắc lần 2 lên */
+    33.33% { transform: rotate(0deg); }       /* Quay về vị trí ban đầu */
+    38.89% { transform: rotate(-20deg); }     /* Lắc lần 3 xuống */
+    44.44% { transform: rotate(20deg); }      /* Lắc lần 3 lên */
+    50% { transform: rotate(0deg); }          /* Quay về vị trí ban đầu */
+    100% { transform: rotate(0deg); }         /* Dừng trong phần còn lại */
 }
